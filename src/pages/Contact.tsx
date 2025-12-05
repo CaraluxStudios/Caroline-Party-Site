@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,8 +10,12 @@ import { useToast } from '@/hooks/use-toast';
 import { Send, Sparkles } from 'lucide-react';
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { toast } = useToast();
+  const [searchParams] = useSearchParams();
+  
+  // Get service from query parameter (e.g., /contact?service=Characters)
+  const serviceFromQuery = searchParams.get('service');
   
   const [formData, setFormData] = useState({
     firstName: '',
@@ -21,6 +26,16 @@ const Contact = () => {
     promo: true,
     terms: false,
   });
+
+  // Pre-fill message when service query param is present
+  useEffect(() => {
+    if (serviceFromQuery) {
+      const prefillMessage = language === 'es' 
+        ? `Estoy interesado/a en reservar: ${serviceFromQuery}`
+        : `I'm interested in booking: ${serviceFromQuery}`;
+      setFormData(prev => ({ ...prev, message: prefillMessage }));
+    }
+  }, [serviceFromQuery, language]);
   
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);

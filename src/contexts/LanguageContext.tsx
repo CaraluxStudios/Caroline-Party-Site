@@ -13,6 +13,7 @@ const translations: Record<string, Record<Language, string>> = {
   'nav.home': { en: 'Home', es: 'Inicio' },
   'nav.services': { en: 'Services', es: 'Servicios' },
   'nav.characters': { en: 'Characters', es: 'Personajes' },
+  'nav.pricing': { en: 'Pricing', es: 'Precios' },
   'nav.about': { en: 'About', es: 'Nosotros' },
   'nav.contact': { en: 'Contact', es: 'Contacto' },
   
@@ -123,6 +124,24 @@ const translations: Record<string, Record<Language, string>> = {
   'footer.contact': { en: 'Contact Us', es: 'Contáctanos' },
   'footer.followus': { en: 'Follow Us', es: 'Síguenos' },
   'footer.copyright': { en: '© 2024 Caroline Party. All rights reserved.', es: '© 2024 Caroline Party. Todos los derechos reservados.' },
+
+  // Gallery
+  'gallery.title': { en: 'Gallery', es: 'Galería' },
+  'gallery.subtitle': { en: 'Browse our work and get inspired for your next celebration!', es: '¡Explora nuestro trabajo e inspírate para tu próxima celebración!' },
+  'gallery.bookService': { en: 'Book This Service', es: 'Reservar Este Servicio' },
+  'gallery.backToPricing': { en: 'Back to Pricing', es: 'Volver a Precios' },
+  'gallery.placeholder': { en: 'More photos coming soon!', es: '¡Más fotos próximamente!' },
+
+  // Pricing
+  'pricing.title': { en: 'Our Pricing', es: 'Nuestros Precios' },
+  'pricing.subtitle': { en: 'Transparent pricing for unforgettable celebrations. All packages can be customized to fit your needs!', es: '¡Precios transparentes para celebraciones inolvidables. Todos los paquetes pueden personalizarse según tus necesidades!' },
+  'pricing.startingAt': { en: 'Starting at', es: 'Desde' },
+  'pricing.from': { en: 'From', es: 'Desde' },
+  'pricing.perSession': { en: 'per session', es: 'por sesión' },
+  'pricing.bookNow': { en: 'Book Now', es: 'Reservar Ahora' },
+  'pricing.viewGallery': { en: 'View Gallery', es: 'Ver Galería' },
+  'pricing.contactForQuote': { en: 'Contact us for a custom quote', es: 'Contáctanos para una cotización personalizada' },
+  'pricing.note': { en: 'Note', es: 'Nota' },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
