@@ -8,6 +8,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Send, Sparkles } from 'lucide-react';
+import { supabase } from '@/lib/supabaseClient'
 
 const Contact = () => {
   const { t, language } = useLanguage();
@@ -65,21 +66,44 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validate()) return;
-    
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!validate()) return;
+
+  setIsSubmitting(true);
+  setErrors({});
+
+  try {
+    const { error } = await supabase
+  .from('contact_requests')
+  .insert([
+    {
+      first_name: formData.firstName,
+      last_name: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+      note: formData.message,
+      wants_promotions: formData.promo,
+      agrees_terms: formData.terms,
+    },
+  ])
+
+if (error) {
+  console.error('Supabase insert error:', error)
+  toast({
+    title: '⚠️ Oops',
+    description: error.message, // 👈 show the real message
+    variant: 'destructive',
+  })
+  return
+}
+
     toast({
-      title: "✨ " + t('contact.success'),
-      description: formData.firstName + ", " + (t('contact.success')),
+      title: '✨ ' + t('contact.success'),
+      description: formData.firstName + ', ' + t('contact.success'),
     });
-    
+
     setFormData({
       firstName: '',
       lastName: '',
@@ -89,8 +113,18 @@ const Contact = () => {
       promo: true,
       terms: false,
     });
+  } catch (err) {
+    console.error('Unexpected error:', err);
+    toast({
+      title: '⚠️ Oops',
+      description: 'Unexpected error, please try again.',
+      variant: 'destructive',
+    });
+  } finally {
     setIsSubmitting(false);
-  };
+  }
+};
+
 
   const handleChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
