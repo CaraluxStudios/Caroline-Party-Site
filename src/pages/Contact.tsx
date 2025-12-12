@@ -6,6 +6,13 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { Send, Sparkles } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient'
@@ -23,6 +30,8 @@ const Contact = () => {
     lastName: '',
     email: '',
     phone: '',
+    serviceType: '',
+    preferredDate: '',
     message: '',
     promo: true,
     terms: false,
@@ -58,6 +67,12 @@ const Contact = () => {
     if (!formData.phone.trim()) {
       newErrors.phone = t('contact.error.required');
     }
+    if (!formData.serviceType) {
+      newErrors.serviceType = t('contact.error.serviceType');
+    }
+    if (!formData.preferredDate) {
+      newErrors.preferredDate = t('contact.error.preferredDate');
+    }
     if (!formData.terms) {
       newErrors.terms = t('contact.error.terms');
     }
@@ -83,6 +98,8 @@ const handleSubmit = async (e: React.FormEvent) => {
       last_name: formData.lastName,
       email: formData.email,
       phone: formData.phone,
+      service_type: formData.serviceType,
+      preferred_date: formData.preferredDate,
       note: formData.message,
       wants_promotions: formData.promo,
       agrees_terms: formData.terms,
@@ -109,6 +126,8 @@ if (error) {
       lastName: '',
       email: '',
       phone: '',
+      serviceType: '',
+      preferredDate: '',
       message: '',
       promo: true,
       terms: false,
@@ -220,6 +239,56 @@ if (error) {
             {errors.phone && (
               <p className="text-sm text-destructive">{errors.phone}</p>
             )}
+          </div>
+
+          {/* Service Type & Preferred Date */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Service Type */}
+            <div className="space-y-2">
+              <Label htmlFor="serviceType" className="text-foreground font-semibold">
+                {t('contact.serviceType')} *
+              </Label>
+              <Select
+                value={formData.serviceType}
+                onValueChange={(value) => handleChange('serviceType', value)}
+              >
+                <SelectTrigger
+                  id="serviceType"
+                  className={`h-12 rounded-xl ${errors.serviceType ? 'border-destructive' : ''}`}
+                >
+                  <SelectValue placeholder={t('contact.serviceType.placeholder')} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="entertainers">{t('contact.serviceType.entertainers')}</SelectItem>
+                  <SelectItem value="balloon-making">{t('contact.serviceType.balloonMaking')}</SelectItem>
+                  <SelectItem value="face-painter">{t('contact.serviceType.facePainter')}</SelectItem>
+                  <SelectItem value="characters">{t('contact.serviceType.characters')}</SelectItem>
+                  <SelectItem value="shows">{t('contact.serviceType.shows')}</SelectItem>
+                  <SelectItem value="mobile-spa">{t('contact.serviceType.mobileSpa')}</SelectItem>
+                </SelectContent>
+              </Select>
+              {errors.serviceType && (
+                <p className="text-sm text-destructive">{errors.serviceType}</p>
+              )}
+            </div>
+
+            {/* Preferred Party Date */}
+            <div className="space-y-2">
+              <Label htmlFor="preferredDate" className="text-foreground font-semibold">
+                {t('contact.preferredDate')} *
+              </Label>
+              <Input
+                id="preferredDate"
+                type="date"
+                value={formData.preferredDate}
+                onChange={(e) => handleChange('preferredDate', e.target.value)}
+                className={`h-12 rounded-xl ${errors.preferredDate ? 'border-destructive' : ''}`}
+                min={new Date().toISOString().split('T')[0]}
+              />
+              {errors.preferredDate && (
+                <p className="text-sm text-destructive">{errors.preferredDate}</p>
+              )}
+            </div>
           </div>
 
           {/* Message */}

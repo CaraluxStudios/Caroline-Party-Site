@@ -97,6 +97,17 @@ const translations: Record<string, Record<Language, string>> = {
   'contact.error.required': { en: 'This field is required', es: 'Este campo es requerido' },
   'contact.error.email': { en: 'Please enter a valid email', es: 'Por favor ingresa un correo válido' },
   'contact.error.terms': { en: 'You must agree to the terms', es: 'Debes aceptar los términos' },
+  'contact.serviceType': { en: 'Service Type', es: 'Tipo de Servicio' },
+  'contact.serviceType.placeholder': { en: 'Select a service...', es: 'Selecciona un servicio...' },
+  'contact.serviceType.entertainers': { en: 'Entertainers', es: 'Animadores' },
+  'contact.serviceType.balloonMaking': { en: 'Balloon Making', es: 'Globoflexia' },
+  'contact.serviceType.facePainter': { en: 'Face Painter', es: 'Pintacaritas' },
+  'contact.serviceType.characters': { en: 'Characters', es: 'Personajes' },
+  'contact.serviceType.shows': { en: 'Shows', es: 'Shows' },
+  'contact.serviceType.mobileSpa': { en: 'Mobile Spa', es: 'Spa Móvil' },
+  'contact.preferredDate': { en: 'Preferred Party Date', es: 'Fecha Preferida de la Fiesta' },
+  'contact.error.serviceType': { en: 'Please select a service type', es: 'Por favor selecciona un tipo de servicio' },
+  'contact.error.preferredDate': { en: 'Please select a preferred date', es: 'Por favor selecciona una fecha preferida' },
 
   // Testimonials
   'testimonials.title': { en: 'What Parents Say', es: 'Lo Que Dicen los Padres' },
