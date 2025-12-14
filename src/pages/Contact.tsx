@@ -103,6 +103,9 @@ const handleSubmit = async (e: React.FormEvent) => {
       note: formData.message,
       wants_promotions: formData.promo,
       agrees_terms: formData.terms,
+
+      workspace_code: 'cp',
+      source_site: 'cp_website',
     },
   ])
 
