@@ -49,14 +49,14 @@ const Footer = () => {
                 className="flex items-center gap-2 text-background/70 hover:text-background transition-colors"
               >
                 <Mail size={18} />
-                info@carolineparty.com
+                {t('footer.email')}
               </a>
               <a 
                 href="tel:+1234567890" 
                 className="flex items-center gap-2 text-background/70 hover:text-background transition-colors"
               >
                 <Phone size={18} />
-                (123) 456-7890
+                {t('footer.phone')}
               </a>
             </div>
           </div>

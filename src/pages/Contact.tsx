@@ -90,6 +90,18 @@ const handleSubmit = async (e: React.FormEvent) => {
   setErrors({});
 
   try {
+    if (!supabase) {
+      console.warn(
+        '[Supabase] Supabase client is not initialized. Check that VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set.'
+      )
+      toast({
+        title: '⚠️ Oops',
+        description: 'Our contact system is temporarily unavailable. Please try again later.',
+        variant: 'destructive',
+      })
+      return
+    }
+
     const { error } = await supabase
   .from('contact_requests')
   .insert([
@@ -219,7 +231,7 @@ if (error) {
               value={formData.email}
               onChange={(e) => handleChange('email', e.target.value)}
               className={`h-12 rounded-xl ${errors.email ? 'border-destructive' : ''}`}
-              placeholder="your@email.com"
+              placeholder={t('contact.email.placeholder')}
             />
             {errors.email && (
               <p className="text-sm text-destructive">{errors.email}</p>
@@ -237,7 +249,7 @@ if (error) {
               value={formData.phone}
               onChange={(e) => handleChange('phone', e.target.value)}
               className={`h-12 rounded-xl ${errors.phone ? 'border-destructive' : ''}`}
-              placeholder="(123) 456-7890"
+              placeholder={t('contact.phone.placeholder')}
             />
             {errors.phone && (
               <p className="text-sm text-destructive">{errors.phone}</p>

@@ -108,6 +108,8 @@ const translations: Record<string, Record<Language, string>> = {
   'contact.preferredDate': { en: 'Preferred Party Date', es: 'Fecha Preferida de la Fiesta' },
   'contact.error.serviceType': { en: 'Please select a service type', es: 'Por favor selecciona un tipo de servicio' },
   'contact.error.preferredDate': { en: 'Please select a preferred date', es: 'Por favor selecciona una fecha preferida' },
+  'contact.email.placeholder': { en: 'youremail.com', es: 'tucorreo.com' },
+  'contact.phone.placeholder': { en: '(123) 456-7890', es: '(123) 456-7890' },
 
   // Testimonials
   'testimonials.title': { en: 'What Parents Say', es: 'Lo Que Dicen los Padres' },
@@ -134,6 +136,8 @@ const translations: Record<string, Record<Language, string>> = {
   'footer.quicklinks': { en: 'Quick Links', es: 'Enlaces Rápidos' },
   'footer.contact': { en: 'Contact Us', es: 'Contáctanos' },
   'footer.followus': { en: 'Follow Us', es: 'Síguenos' },
+  'footer.email': { en: 'info@carolineparty.com', es: 'info@carolineparty.com' },
+  'footer.phone': { en: '(123) 456-7890', es: '(123) 456-7890' },
   'footer.copyright': { en: '© 2024 Caroline Party. All rights reserved.', es: '© 2024 Caroline Party. Todos los derechos reservados.' },
 
   // Gallery
@@ -153,6 +157,9 @@ const translations: Record<string, Record<Language, string>> = {
   'pricing.viewGallery': { en: 'View Gallery', es: 'Ver Galería' },
   'pricing.contactForQuote': { en: 'Contact us for a custom quote', es: 'Contáctanos para una cotización personalizada' },
   'pricing.note': { en: 'Note', es: 'Nota' },
+  // Not Found
+  'notfound.message': { en: 'Oops! Page not found', es: '¡Ups! Página no encontrada' },
+  'notfound.return_home': { en: 'Return to Home', es: 'Volver al inicio' },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
