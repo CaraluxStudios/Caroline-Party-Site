@@ -2,7 +2,6 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import CharacterCard from '@/components/CharacterCard';
 
 import mermaidPrincess from '@/assets/mermaid-princess.png';
-import princessesGroup from '@/assets/princesses-group.png';
 import spaParty from '@/assets/spa-party.png';
 
 const Characters = () => {
@@ -17,17 +16,132 @@ const Characters = () => {
     { 
       nameKey: 'character.ice.name', 
       descKey: 'character.ice.desc', 
-      image: princessesGroup 
+      image: '/images/Elsa_and_Anna_1.jpg' 
     },
     { 
       nameKey: 'character.adventure.name', 
       descKey: 'character.adventure.desc', 
-      image: princessesGroup 
+      image: '/images/Anna_1.jpeg' 
     },
     { 
-      nameKey: 'character.spa.name', 
-      descKey: 'character.spa.desc', 
-      image: spaParty 
+      nameKey: 'character.sleeping.name',
+      descKey: 'character.sleeping.desc',
+      image: '/images/Aurora_1.jpeg'
+    },
+    { 
+      nameKey: 'character.bookish.name',
+      descKey: 'character.bookish.desc',
+      image: '/images/Belle_1.jpeg'
+    },
+    { 
+      nameKey: 'character.royal.name',
+      descKey: 'character.royal.desc',
+      image: '/images/CLH Princess.jpg'
+    },
+    { 
+      nameKey: 'character.cowgirl.name',
+      descKey: 'character.cowgirl.desc',
+      image: '/images/Cowgirl_1.jpeg'
+    },
+    { 
+      nameKey: 'character.easterBunny.name',
+      descKey: 'character.easterBunny.desc',
+      image: '/images/conejo_de_pascua_1.jpeg'
+    },
+    { 
+      nameKey: 'character.popStar.name',
+      descKey: 'character.popStar.desc',
+      image: '/images/Taylor_Swift_1.jpg'
+    },
+    { 
+      nameKey: 'character.sharkMascot.name',
+      descKey: 'character.sharkMascot.desc',
+      image: '/images/Baby_Shark_1.jpg'
+    },
+    { 
+      nameKey: 'character.monsterTrainer.name',
+      descKey: 'character.monsterTrainer.desc',
+      image: '/images/Pokemon_Trainer_1.jpeg'
+    },
+    { 
+      nameKey: 'character.speedyHero.name',
+      descKey: 'character.speedyHero.desc',
+      image: '/images/Sonic_1.jpeg'
+    },
+    { 
+      nameKey: 'character.adventurePlumber.name',
+      descKey: 'character.adventurePlumber.desc',
+      image: '/images/Mario_1.jpeg'
+    },
+    { 
+      nameKey: 'character.spaceDuo.name',
+      descKey: 'character.spaceDuo.desc',
+      image: '/images/DarthVader_and_Leia_1.jpeg'
+    },
+    { 
+      nameKey: 'character.warriorHeroine.name',
+      descKey: 'character.warriorHeroine.desc',
+      image: '/images/Wonder_Woman_1.jpeg'
+    },
+    { 
+      nameKey: 'character.webHero.name',
+      descKey: 'character.webHero.desc',
+      image: '/images/Spiderman_1.jpeg'
+    },
+    { 
+      nameKey: 'character.bluePup.name',
+      descKey: 'character.bluePup.desc',
+      image: '/images/Bluey_1.jpeg'
+    },
+    { 
+      nameKey: 'character.friendlyMonster.name',
+      descKey: 'character.friendlyMonster.desc',
+      image: '/images/Elmo_and_CookieMonster_1.jpeg'
+    },
+    { 
+      nameKey: 'character.toddlerFriends.name',
+      descKey: 'character.toddlerFriends.desc',
+      image: '/images/CocoMelon_1.jpeg'
+    },
+    { 
+      nameKey: 'character.islandPrincess.name',
+      descKey: 'character.islandPrincess.desc',
+      image: '/images/Moana_!.jpeg'
+    },
+    { 
+      nameKey: 'character.flowerSister.name',
+      descKey: 'character.flowerSister.desc',
+      image: '/images/Isabella_1.jpeg'
+    },
+    { 
+      nameKey: 'character.desertPrincess.name',
+      descKey: 'character.desertPrincess.desc',
+      image: '/images/Jasmine_1.jpeg'
+    },
+    { 
+      nameKey: 'character.joyfulHeroine.name',
+      descKey: 'character.joyfulHeroine.desc',
+      image: '/images/Joy_1.jpeg'
+    },
+    { 
+      nameKey: 'character.peachPrincess.name',
+      descKey: 'character.peachPrincess.desc',
+      image: '/images/Peach_1.jpeg'
+    },
+    { 
+      nameKey: 'character.pirateDaughter.name',
+      descKey: 'character.pirateDaughter.desc',
+      image: '/images/Uma_1.jpeg'
+    },
+    { 
+      nameKey: 'character.stagePerformer.name',
+      descKey: 'character.stagePerformer.desc',
+      image: '/images/Luli_Pampin_1.jpg'
+    },
+    { 
+      nameKey: 'character.groovyFriend.name',
+      descKey: 'character.groovyFriend.desc',
+      image: '/images/Hippie_1.jpeg'
     },
   ];
 

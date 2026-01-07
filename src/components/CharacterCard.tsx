@@ -10,7 +10,7 @@ interface CharacterCardProps {
   delay?: number;
 }
 
-const CharacterCard = ({ name, description, image, delay = 0 }: CharacterCardProps) => {
+const CharacterCard = ({ name, image, delay = 0 }: CharacterCardProps) => {
   const { t } = useLanguage();
 
   return (
@@ -34,9 +34,6 @@ const CharacterCard = ({ name, description, image, delay = 0 }: CharacterCardPro
         {/* Content overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-6 text-primary-foreground">
           <h3 className="text-2xl font-bold mb-2">{name}</h3>
-          <p className="text-primary-foreground/80 text-sm leading-relaxed mb-4">
-            {description}
-          </p>
           <Button asChild variant="accent" size="sm" className="w-full">
             <Link to="/contact">{t('characters.book')}</Link>
           </Button>

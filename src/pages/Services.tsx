@@ -1,6 +1,9 @@
-import { Crown, Sparkles, Wand2, SmilePlus, Palette, PartyPopper, Music, Users } from 'lucide-react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { Crown, Sparkles, Wand2, SmilePlus, Palette, PartyPopper } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ServiceCard from '@/components/ServiceCard';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 import princessesGroup from '@/assets/princesses-group.png';
 import spaParty from '@/assets/spa-party.png';
@@ -8,21 +11,33 @@ import magician from '@/assets/magician.jpg';
 import clown from '@/assets/clown.jpg';
 import facePainting from '@/assets/face-painting.jpg';
 import balloonArtist from '@/assets/balloon-artist.jpg';
-import mermaidPrincess from '@/assets/mermaid-princess.png';
 
 const Services = () => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const services = [
-    { key: 'princess', icon: Crown, image: princessesGroup },
-    { key: 'spa', icon: Sparkles, image: spaParty },
-    { key: 'magic', icon: Wand2, image: magician },
-    { key: 'clown', icon: SmilePlus, image: clown },
-    { key: 'facepainting', icon: Palette, image: facePainting },
-    { key: 'balloon', icon: PartyPopper, image: balloonArtist },
-    { key: 'dance', icon: Music, image: mermaidPrincess },
-    { key: 'host', icon: Users, image: princessesGroup },
-  ];
+    { key: 'entertainment', icon: Crown, image: princessesGroup },
+    { key: 'characters', icon: Sparkles, image: spaParty },
+    { key: 'facePainters', icon: Wand2, image: magician },
+    { key: 'balloonArtists', icon: SmilePlus, image: clown },
+    { key: 'shows', icon: Palette, image: facePainting },
+    { key: 'santa', icon: PartyPopper, image: balloonArtist },
+  ] as const;
+
+  type ServiceKey = (typeof services)[number]['key'];
+
+  const openServiceKey = searchParams.get('service') as ServiceKey | null;
+
+  const handleOpenChange = (key: ServiceKey, open: boolean) => {
+    const next = new URLSearchParams(searchParams);
+    if (open) {
+      next.set('service', key);
+    } else {
+      next.delete('service');
+    }
+    setSearchParams(next);
+  };
 
   return (
     <main className="py-16">
@@ -40,17 +55,60 @@ const Services = () => {
 
       {/* Services Grid */}
       <section className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {services.map((service, index) => (
-            <ServiceCard
-              key={service.key}
-              title={t(`service.${service.key}.title`)}
-              description={t(`service.${service.key}.desc`)}
-              image={service.image}
-              icon={service.icon}
-              delay={index * 100}
-            />
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => {
+            const isOpen = openServiceKey === service.key;
+
+            const isCharacters = service.key === 'characters';
+            const ctaLabel = isCharacters
+              ? t('services.modal.cta.characters')
+              : t('services.modal.cta.book');
+            const ctaTo = isCharacters ? '/characters' : '/contact';
+
+            return (
+              <Dialog
+                key={service.key}
+                open={isOpen}
+                onOpenChange={(open) => handleOpenChange(service.key, open)}
+              >
+                <DialogTrigger asChild>
+                  <ServiceCard
+                    title={t(`service.${service.key}.title`)}
+                    description={t(`service.${service.key}.short`)}
+                    image={service.image}
+                    icon={service.icon}
+                    delay={index * 100}
+                  />
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl overflow-hidden p-0 sm:rounded-3xl">
+                  <div className="flex flex-col">
+                    <img
+                      src={service.image}
+                      alt={t(`service.${service.key}.title`)}
+                      className="h-80 md:h-96 lg:h-[28rem] w-full object-cover"
+                    />
+                    <div className="space-y-4 p-6">
+                      <DialogHeader className="space-y-2 text-left">
+                        <DialogTitle className="text-2xl font-bold">
+                          {t(`service.${service.key}.title`)}
+                        </DialogTitle>
+                        <DialogDescription className="text-base leading-relaxed">
+                          {t(`service.${service.key}.details`)}
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="flex justify-end">
+                        <Button asChild size="lg">
+                          <Link to={ctaTo} className="gap-2">
+                            {ctaLabel}
+                          </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            );
+          })}
         </div>
       </section>
 

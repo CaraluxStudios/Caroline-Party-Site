@@ -5,6 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import ServiceCard from '@/components/ServiceCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 import heroBg from '@/assets/hero-bg.jpg';
 import princessesGroup from '@/assets/princesses-group.png';
@@ -19,12 +20,12 @@ const Index = () => {
   const { t } = useLanguage();
 
   const services = [
-    { key: 'princess', icon: Crown, image: princessesGroup },
-    { key: 'spa', icon: Sparkles, image: spaParty },
-    { key: 'magic', icon: Wand2, image: magician },
-    { key: 'clown', icon: SmilePlus, image: clown },
-    { key: 'facepainting', icon: Palette, image: facePainting },
-    { key: 'balloon', icon: PartyPopper, image: balloonArtist },
+    { key: 'entertainment', icon: Crown, image: princessesGroup },
+    { key: 'characters', icon: Sparkles, image: spaParty },
+    { key: 'facePainters', icon: Wand2, image: magician },
+    { key: 'balloonArtists', icon: SmilePlus, image: clown },
+    { key: 'shows', icon: Palette, image: facePainting },
+    { key: 'santa', icon: PartyPopper, image: balloonArtist },
   ];
 
   return (
@@ -41,12 +42,12 @@ const Index = () => {
           <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
             <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full text-primary font-semibold">
               <Sparkles size={18} className="animate-sparkle" />
-              <span>Caroline Party</span>
+              <span>{t('hero.taglineShort')}</span>
               <Sparkles size={18} className="animate-sparkle" />
             </div>
             
             <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
-              <span className="text-gradient-magical">{t('hero.tagline')}</span>
+              <span className="text-gradient-magical">{t('hero.brand')}</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -82,14 +83,44 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <ServiceCard
-                key={service.key}
-                title={t(`service.${service.key}.title`)}
-                description={t(`service.${service.key}.desc`)}
-                image={service.image}
-                icon={service.icon}
-                delay={index * 100}
-              />
+              <Dialog key={service.key}>
+                <DialogTrigger asChild>
+                  <ServiceCard
+                    title={t(`service.${service.key}.title`)}
+                    description={t(`service.${service.key}.short`)}
+                    image={service.image}
+                    icon={service.icon}
+                    delay={index * 100}
+                  />
+                </DialogTrigger>
+                <DialogContent className="max-w-xl overflow-hidden p-0 sm:rounded-3xl">
+                  <div className="flex flex-col">
+                    <img
+                      src={service.image}
+                      alt={t(`service.${service.key}.title`)}
+                      className="h-72 md:h-80 lg:h-96 w-full object-cover"
+                    />
+                    <div className="space-y-4 p-6">
+                      <DialogHeader className="space-y-2 text-left">
+                        <DialogTitle className="text-2xl font-bold">
+                          {t(`service.${service.key}.title`)}
+                        </DialogTitle>
+                        <DialogDescription className="text-base leading-relaxed">
+                          {t(`service.${service.key}.long`)}
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="flex justify-end">
+                        <Button asChild size="lg">
+                          <Link to="/services" className="gap-2">
+                            {t('services.modal.cta')}
+                            <ArrowRight size={18} />
+                          </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
             ))}
           </div>
           
@@ -110,22 +141,22 @@ const Index = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="grid grid-cols-2 gap-4">
               <img 
-                src={princessesGroup} 
+                src="/images/Elsa_and_Anna_1.jpg" 
                 alt="Princess performers" 
-                className="rounded-3xl shadow-card w-full h-64 object-cover"
+                className="rounded-3xl shadow-card w-full h-64 object-cover md:object-[50%_10%]"
               />
               <img 
-                src={mermaidPrincess} 
+                src="/images/Luli_Pampin_4.jpeg" 
                 alt="Mermaid princess" 
                 className="rounded-3xl shadow-card w-full h-64 object-cover mt-8"
               />
               <img 
-                src={spaParty} 
+                src="/images/Taylor_Swift_1.jpg" 
                 alt="Kids spa party" 
-                className="rounded-3xl shadow-card w-full h-48 object-cover -mt-4"
+                className="rounded-3xl shadow-card w-full h-48 object-cover object-[50%_20%] md:object-[50%_10%] -mt-4"
               />
               <img 
-                src={magician} 
+                src="/images/Baby_Shark_1.jpg" 
                 alt="Magician show" 
                 className="rounded-3xl shadow-card w-full h-48 object-cover mt-4"
               />
