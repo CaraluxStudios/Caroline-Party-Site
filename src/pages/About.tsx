@@ -30,9 +30,23 @@ const About = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-primary">
               {t('about.story.title')}
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              {t('about.story.text')}
-            </p>
+            <div className="space-y-4">
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {t('about.story.p1')}
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {t('about.story.p2')}
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {t('about.story.p3')}
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {t('about.story.p4')}
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {t('about.story.p5')}
+              </p>
+            </div>
           </div>
           <div className="order-1 lg:order-2">
             <img 

@@ -16,6 +16,13 @@ const translations: Record<string, Record<Language, string>> = {
   'nav.pricing': { en: 'Pricing', es: 'Precios' },
   'nav.about': { en: 'About', es: 'Nosotros' },
   'nav.contact': { en: 'Contact', es: 'Contacto' },
+  'nav.gallery': { en: 'Gallery', es: 'Galería' },
+  'nav.gallery.entertainers': { en: 'Entertainers', es: 'Animadores' },
+  'nav.gallery.characters': { en: 'Characters', es: 'Personajes' },
+  'nav.gallery.facePainting': { en: 'Face Painting', es: 'Pinta Caritas' },
+  'nav.gallery.balloons': { en: 'Balloon Artists', es: 'Artistas de Globos' },
+  'nav.gallery.shows': { en: 'Shows', es: 'Shows' },
+  'nav.gallery.specialCharacters': { en: 'Special Characters', es: 'Personajes Especiales' },
   
   // Hero
   'hero.brand': { en: 'Caroline Party', es: 'Caroline Party' },
@@ -146,7 +153,26 @@ const translations: Record<string, Record<Language, string>> = {
   // About
   'about.title': { en: 'About Caroline Party', es: 'Sobre Caroline Party' },
   'about.story.title': { en: 'Our Story', es: 'Nuestra Historia' },
-  'about.story.text': { en: 'Caroline Party was born from a simple dream: to bring pure joy and magical moments to children\'s celebrations. What started as a passion project has grown into a team of dedicated performers who share one mission – making every child feel like the star of their own fairy tale.', es: 'Caroline Party nació de un sueño simple: traer alegría pura y momentos mágicos a las celebraciones infantiles. Lo que comenzó como un proyecto de pasión ha crecido en un equipo de artistas dedicados que comparten una misión: hacer que cada niño se sienta como la estrella de su propio cuento de hadas.' },
+  'about.story.p1': {
+    en: 'Caroline Party was born from a deeply personal dream. In loving memory of Caroline, a cherished sister and daughter, Diana and Rosa set out to create something meaningful—an entertainment company dedicated to bringing joy, laughter, and magical moments to children and families.',
+    es: 'Caroline Party nació de un sueño profundamente personal. En amorosa memoria de Caroline, una hermana e hija muy querida, Diana y Rosa decidieron crear algo significativo: una compañía de entretenimiento dedicada a llevar alegría, risas y momentos mágicos a niños y familias.',
+  },
+  'about.story.p2': {
+    en: 'What began as a heartfelt tribute quickly grew into a passion-driven project rooted in love, creativity, and connection. In the early years, Caroline Party was small and hands-on, growing organically through word of mouth and the trust of families who believed in our vision.',
+    es: 'Lo que comenzó como un homenaje lleno de amor pronto se convirtió en un proyecto impulsado por la pasión, la creatividad y la conexión humana. En sus primeros años, Caroline Party era pequeño y muy cercano, creciendo de manera orgánica gracias al boca a boca y a la confianza de las familias que creyeron en nuestra visión.',
+  },
+  'about.story.p3': {
+    en: 'Over time, that dedication turned into something much bigger. Today, Caroline Party is proud to work with a large, talented team of professional entertainers, performers, and artists who share one mission: making every child feel celebrated and special.',
+    es: 'Con el tiempo, esa dedicación se transformó en algo mucho más grande. Hoy, Caroline Party cuenta con un amplio y talentoso equipo de animadores, artistas y performers profesionales que comparten una misma misión: hacer que cada niño se sienta celebrado y especial.',
+  },
+  'about.story.p4': {
+    en: 'With thousands of parties and happy families behind us, we bring not only magic—but experience, reliability, and heart—to every event we’re part of. From birthdays and holidays to schools and community celebrations, we understand what it takes to create moments children will remember forever.',
+    es: 'Con miles de fiestas y familias felices a lo largo de nuestra historia, ofrecemos no solo magia, sino también experiencia, compromiso y corazón en cada evento del que formamos parte. Desde cumpleaños y celebraciones especiales hasta escuelas y eventos comunitarios, sabemos cómo crear recuerdos que los niños atesorarán para siempre.',
+  },
+  'about.story.p5': {
+    en: 'At Caroline Party, every celebration is personal. Every smile matters. And every event is another chance to honor Caroline’s legacy by spreading happiness—one party at a time.',
+    es: 'En Caroline Party, cada celebración es personal. Cada sonrisa importa. Y cada evento es una nueva oportunidad para honrar el legado de Caroline compartiendo felicidad—una fiesta a la vez.',
+  },
   'about.mission.title': { en: 'Our Mission', es: 'Nuestra Misión' },
   'about.mission.text': { en: 'Making every child\'s celebration unforgettable through magical entertainment, professional performances, and heartfelt experiences that create lasting memories for families.', es: 'Hacer cada celebración infantil inolvidable a través de entretenimiento mágico, actuaciones profesionales y experiencias sinceras que crean recuerdos duraderos para las familias.' },
   'about.values.title': { en: 'Our Values', es: 'Nuestros Valores' },
@@ -224,8 +250,8 @@ const translations: Record<string, Record<Language, string>> = {
   'footer.contact': { en: 'Contact Us', es: 'Contáctanos' },
   'footer.followus': { en: 'Follow Us', es: 'Síguenos' },
   'footer.email': { en: 'info@carolineparty.com', es: 'info@carolineparty.com' },
-  'footer.phone': { en: '(123) 456-7890', es: '(123) 456-7890' },
-  'footer.copyright': { en: '© 2024 Caroline Party. All rights reserved.', es: '© 2024 Caroline Party. Todos los derechos reservados.' },
+  'footer.phone': { en: '+1 (786) 925-5979', es: '+1 (786) 925-5979' },
+  'footer.copyright': { en: '© 2026 Caroline Party. All rights reserved.', es: '© 2026 Caroline Party. Todos los derechos reservados.' },
 
   // Gallery
   'gallery.title': { en: 'Gallery', es: 'Galería' },
