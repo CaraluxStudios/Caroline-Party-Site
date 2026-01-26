@@ -63,7 +63,7 @@ const Services = () => {
             const ctaLabel = isCharacters
               ? t('services.modal.cta.characters')
               : t('services.modal.cta.book');
-            const ctaTo = isCharacters ? '/characters' : '/contact';
+            const ctaTo = isCharacters ? '/gallery/characters' : '/contact';
 
             return (
               <Dialog

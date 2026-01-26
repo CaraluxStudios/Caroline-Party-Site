@@ -41,7 +41,6 @@ const Header = () => {
   const navLinks: NavLinkItem[] = [
     { type: 'link', path: '/', label: 'nav.home' },
     { type: 'link', path: '/services', label: 'nav.services' },
-    { type: 'link', path: '/characters', label: 'nav.characters' },
     { type: 'link', path: '/pricing', label: 'nav.pricing' },
     { type: 'gallery', label: 'nav.gallery' },
     { type: 'link', path: '/about', label: 'nav.about' },

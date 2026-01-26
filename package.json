@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "predev": "npm run build:gallery",
     "build": "vite build",
+    "prebuild": "npm run build:gallery",
     "build:dev": "vite build --mode development",
+    "build:gallery": "node scripts/build-gallery-manifest.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },

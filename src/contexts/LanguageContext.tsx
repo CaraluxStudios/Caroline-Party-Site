@@ -259,6 +259,9 @@ const translations: Record<string, Record<Language, string>> = {
   'gallery.bookService': { en: 'Book This Service', es: 'Reservar Este Servicio' },
   'gallery.backToPricing': { en: 'Back to Pricing', es: 'Volver a Precios' },
   'gallery.placeholder': { en: 'More photos coming soon!', es: '¡Más fotos próximamente!' },
+  'gallery.loadError': { en: 'Could not load photos.', es: 'No se pudieron cargar las fotos.' },
+  'gallery.previousImage': { en: 'Previous image', es: 'Imagen anterior' },
+  'gallery.nextImage': { en: 'Next image', es: 'Siguiente imagen' },
  
   // Home services cards (new structure)
   'services.modal.cta': { en: 'See all services', es: 'Ver todos los servicios' },

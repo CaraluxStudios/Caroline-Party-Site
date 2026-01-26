@@ -170,7 +170,7 @@ const Index = () => {
                 {t('characters.subtitle')}
               </p>
               <Button asChild variant="default" size="lg">
-                <Link to="/characters" className="gap-2">
+                <Link to="/gallery/characters" className="gap-2">
                   {t('nav.characters')}
                   <ArrowRight size={18} />
                 </Link>
