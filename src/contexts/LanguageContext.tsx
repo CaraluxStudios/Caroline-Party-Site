@@ -249,7 +249,7 @@ const translations: Record<string, Record<Language, string>> = {
   'footer.quicklinks': { en: 'Quick Links', es: 'Enlaces Rápidos' },
   'footer.contact': { en: 'Contact Us', es: 'Contáctanos' },
   'footer.followus': { en: 'Follow Us', es: 'Síguenos' },
-  'footer.email': { en: 'info@carolineparty.com', es: 'info@carolineparty.com' },
+  'footer.email': { en: 'carolinepartyflorida@gmail.com', es: 'carolinepartyflorida@gmail.com' },
   'footer.phone': { en: '+1 (786) 925-5979', es: '+1 (786) 925-5979' },
   'footer.copyright': { en: '© 2026 Caroline Party. All rights reserved.', es: '© 2026 Caroline Party. Todos los derechos reservados.' },
 

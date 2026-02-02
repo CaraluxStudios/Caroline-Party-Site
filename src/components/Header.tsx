@@ -22,6 +22,10 @@ type NavLinkItem =
       label: string;
     };
 
+// Temporary hide: Balloon Artists gallery should not be publicly accessible.
+// Flip to `false` to re-enable the nav link.
+const HIDE_BALLOON_ARTISTS_GALLERY = true;
+
 const galleryLinks = [
   { path: '/gallery/entertainers', labelKey: 'nav.gallery.entertainers' },
   { path: '/gallery/characters', labelKey: 'nav.gallery.characters' },
@@ -29,7 +33,10 @@ const galleryLinks = [
   { path: '/gallery/balloons', labelKey: 'nav.gallery.balloons' },
   { path: '/gallery/shows', labelKey: 'nav.gallery.shows' },
   { path: '/gallery/special-characters', labelKey: 'nav.gallery.specialCharacters' },
-];
+].filter(
+  (item) =>
+    !(HIDE_BALLOON_ARTISTS_GALLERY && item.path === '/gallery/balloons'),
+);
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

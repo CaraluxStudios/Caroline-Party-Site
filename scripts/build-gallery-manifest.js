@@ -15,13 +15,25 @@ const GALLERY_FOLDERS = {
   "special-characters": "Special",
 };
 
-const SUPPORTED_EXTS = new Set([".jpg", ".jpeg", ".png", ".webp"]);
+// Supported public gallery media formats.
+// Images + videos are included in the manifest; the runtime gallery decides how to render them.
+const SUPPORTED_MEDIA_EXTS = new Set([
+  // images
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".webp",
+  // videos
+  ".mp4",
+  ".webm",
+  ".mov",
+]);
 
 const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: "base" });
 
-const isSupportedImage = (filename) => {
+const isSupportedMedia = (filename) => {
   const ext = path.extname(filename).toLowerCase();
-  return SUPPORTED_EXTS.has(ext);
+  return SUPPORTED_MEDIA_EXTS.has(ext);
 };
 
 const normalizeSlashes = (p) => p.split(path.sep).join("/");
@@ -108,7 +120,7 @@ const buildCategoryList = async ({ slug, folderName }) => {
   const urls = [];
   for (const abs of filesAbs) {
     const filename = path.basename(abs);
-    if (!isSupportedImage(filename)) continue;
+    if (!isSupportedMedia(filename)) continue;
 
     // Stored as public-relative URL paths (no leading slash) so Vite base can be applied.
     const relToPublic = normalizeSlashes(path.relative(path.join(PROJECT_ROOT, "public"), abs));

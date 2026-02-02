@@ -8,24 +8,23 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 import heroBg from '@/assets/hero-bg.jpg';
-import princessesGroup from '@/assets/princesses-group.png';
-import mermaidPrincess from '@/assets/mermaid-princess.png';
-import spaParty from '@/assets/spa-party.png';
-import magician from '@/assets/magician.jpg';
-import clown from '@/assets/clown.jpg';
-import facePainting from '@/assets/face-painting.jpg';
-import balloonArtist from '@/assets/balloon-artist.jpg';
+import entertainer from '/images/entertainer.jpg';
+import character from '/images/character.jpg';
+import facePainter from '/images/facepainter.png';
+import santa from '/images/santa.jpeg';
+import shows from '/images/shows.jpeg';
+import balloonArtist from '/images/balloon-maker.jpeg';
 
 const Index = () => {
   const { t } = useLanguage();
 
   const services = [
-    { key: 'entertainment', icon: Crown, image: princessesGroup },
-    { key: 'characters', icon: Sparkles, image: spaParty },
-    { key: 'facePainters', icon: Wand2, image: magician },
-    { key: 'balloonArtists', icon: SmilePlus, image: clown },
-    { key: 'shows', icon: Palette, image: facePainting },
-    { key: 'santa', icon: PartyPopper, image: balloonArtist },
+    { key: 'entertainment', icon: Crown, image: entertainer },
+    { key: 'characters', icon: Sparkles, image: character },
+    { key: 'facePainters', icon: Wand2, image: facePainter },
+    { key: 'balloonArtists', icon: SmilePlus, image: balloonArtist },
+    { key: 'shows', icon: Palette, image: shows },
+    { key: 'santa', icon: PartyPopper, image: santa },
   ];
 
   return (
@@ -141,22 +140,22 @@ const Index = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="grid grid-cols-2 gap-4">
               <img 
-                src="/images/Elsa_and_Anna_1.jpg" 
+                src="/images/Entertainers/Elsa_and_Anna_1.jpg" 
                 alt="Princess performers" 
                 className="rounded-3xl shadow-card w-full h-64 object-cover md:object-[50%_10%]"
               />
               <img 
-                src="/images/Luli_Pampin_4.jpeg" 
+                src="/images/Entertainers/Luli_Pampin_4.jpeg" 
                 alt="Mermaid princess" 
                 className="rounded-3xl shadow-card w-full h-64 object-cover mt-8"
               />
               <img 
-                src="/images/Taylor_Swift_1.jpg" 
+                src="/images/Entertainers/Taylor_Swift_1.jpg" 
                 alt="Kids spa party" 
                 className="rounded-3xl shadow-card w-full h-48 object-cover object-[50%_20%] md:object-[50%_10%] -mt-4"
               />
               <img 
-                src="/images/Baby_Shark_1.jpg" 
+                src="/images/Characters/Baby_Shark_1.jpg" 
                 alt="Magician show" 
                 className="rounded-3xl shadow-card w-full h-48 object-cover mt-4"
               />

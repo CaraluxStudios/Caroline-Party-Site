@@ -59,7 +59,7 @@ const Footer = () => {
             <h4 className="font-bold text-lg mb-4">{t('footer.contact')}</h4>
             <div className="flex flex-col gap-3">
               <a 
-                href="mailto:info@carolineparty.com"
+                href="mailto:carolinepartyflorida@gmail.com"
                 className="flex items-center gap-2 text-background/70 hover:text-background transition-colors"
               >
                 <Mail size={18} />

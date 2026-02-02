@@ -1,29 +1,29 @@
 import { Link, useSearchParams } from 'react-router-dom';
-import { Crown, Sparkles, Wand2, SmilePlus, Palette, PartyPopper } from 'lucide-react';
+import { Crown, Sparkles, Snowflake, Palette, Drama, SmilePlus } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ServiceCard from '@/components/ServiceCard';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
-import princessesGroup from '@/assets/princesses-group.png';
-import spaParty from '@/assets/spa-party.png';
-import magician from '@/assets/magician.jpg';
-import clown from '@/assets/clown.jpg';
-import facePainting from '@/assets/face-painting.jpg';
-import balloonArtist from '@/assets/balloon-artist.jpg';
+import entertainer from '/images/entertainer.jpg';
+import character from '/images/character.jpg';
+import facePainter from '/images/facepainter.png';
+import santa from '/images/santa.jpeg';
+import shows from '/images/shows.jpeg';
+import balloonArtist from '/images/balloon-maker.jpeg';
 
 const Services = () => {
   const { t } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const services = [
-    { key: 'entertainment', icon: Crown, image: princessesGroup },
-    { key: 'characters', icon: Sparkles, image: spaParty },
-    { key: 'facePainters', icon: Wand2, image: magician },
-    { key: 'balloonArtists', icon: SmilePlus, image: clown },
-    { key: 'shows', icon: Palette, image: facePainting },
-    { key: 'santa', icon: PartyPopper, image: balloonArtist },
-  ] as const;
+    { key: 'entertainment', icon: Crown, image: entertainer },
+    { key: 'characters', icon: SmilePlus, image: character },
+    { key: 'facePainters', icon: Palette, image: facePainter },
+    { key: 'balloonArtists', icon: Sparkles, image: balloonArtist },
+    { key: 'shows', icon: Drama, image: shows },
+    { key: 'santa', icon: Snowflake, image: santa },
+  ];
 
   type ServiceKey = (typeof services)[number]['key'];
 

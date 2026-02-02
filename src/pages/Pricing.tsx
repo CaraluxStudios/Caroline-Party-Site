@@ -12,6 +12,7 @@ import {
 
 const Pricing = () => {
   const { t, language } = useLanguage();
+  const balloonGalleryEnabled = false;
 
   /**
    * Renders the price display based on pricing type.
@@ -48,8 +49,12 @@ const Pricing = () => {
   /**
    * Renders a single pricing card for a service category.
    */
-  const renderPricingCard = (service: ServicePricing) => (
-    <Card key={service.id} className="flex flex-col h-full">
+  const renderPricingCard = (service: ServicePricing) => {
+    const isBalloonArtists = service.id === 'balloon';
+    const galleryEnabled = !(isBalloonArtists && !balloonGalleryEnabled);
+
+    return (
+      <Card key={service.id} className="flex flex-col h-full">
       <CardHeader>
         <CardTitle className="text-xl">
           {getLocalizedText(service.name, language)}
@@ -68,12 +73,25 @@ const Pricing = () => {
         )}
       </CardContent>
       <CardFooter>
-        <Button asChild variant="default" className="w-full">
-          <Link to={service.galleryPath}>{t('pricing.viewGallery')}</Link>
-        </Button>
+        {galleryEnabled ? (
+          <Button asChild variant="default" className="w-full">
+            <Link to={service.galleryPath}>{t('pricing.viewGallery')}</Link>
+          </Button>
+        ) : (
+          <Button
+            type="button"
+            variant="default"
+            className="w-full pointer-events-none opacity-60"
+            disabled
+            aria-disabled="true"
+          >
+            {t('pricing.viewGallery')}
+          </Button>
+        )}
       </CardFooter>
     </Card>
-  );
+    );
+  };
 
   return (
     <main className="py-16">

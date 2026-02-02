@@ -1,14 +1,30 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, ChevronLeft, ChevronRight, ImageIcon } from 'lucide-react';
+import { ArrowLeft, ChevronLeft, ChevronRight, ImageIcon, Play } from 'lucide-react';
 import { 
   servicePricing, 
   getLocalizedText,
   type ServicePricing,
 } from '@/data/pricing';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
+
+type MediaType = 'image' | 'video' | 'unknown';
+
+const VIDEO_EXTS = new Set(['mp4', 'webm', 'mov']);
+const IMAGE_EXTS = new Set(['jpg', 'jpeg', 'png', 'webp']);
+
+const getMediaTypeFromPath = (src: string): MediaType => {
+  // Strip query/hash to get a clean file extension.
+  const clean = src.split('#')[0]?.split('?')[0] ?? src;
+  const lastDot = clean.lastIndexOf('.');
+  if (lastDot === -1) return 'unknown';
+  const ext = clean.slice(lastDot + 1).toLowerCase();
+  if (VIDEO_EXTS.has(ext)) return 'video';
+  if (IMAGE_EXTS.has(ext)) return 'image';
+  return 'unknown';
+};
 
 /**
  * Map URL slugs to service IDs.
@@ -45,6 +61,7 @@ const Gallery = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [manifest, setManifest] = useState<GalleryManifest | null>(null);
   const [manifestError, setManifestError] = useState<string | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const normalizedCategory = useMemo(() => {
     if (!category) return undefined;
@@ -114,6 +131,11 @@ const Gallery = () => {
     return items.map((p) => `${normalizedBase}${p.replace(/^\/+/, '')}`);
   }, [baseUrl, manifest, normalizedCategory]);
 
+  const activeSrc = useMemo(() => {
+    if (!lightboxOpen || activeIndex === null) return null;
+    return galleryImages[activeIndex] ?? null;
+  }, [activeIndex, galleryImages, lightboxOpen]);
+
   const openLightbox = (index: number) => {
     if (!galleryImages.length) return;
     setActiveIndex(index);
@@ -155,6 +177,42 @@ const Gallery = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [lightboxOpen, galleryImages.length, showPrev, showNext]);
 
+  // Video autoplay (with-sound -> fallback muted) + cleanup on close/switch
+  useEffect(() => {
+    if (!activeSrc) return;
+    if (getMediaTypeFromPath(activeSrc) !== 'video') return;
+
+    const el = videoRef.current;
+    if (!el) return;
+
+    el.currentTime = 0;
+    el.muted = false;
+
+    const tryAutoplay = async () => {
+      try {
+        await el.play();
+      } catch {
+        try {
+          el.muted = true;
+          await el.play();
+        } catch {
+          // Autoplay blocked even when muted; controls remain available for user.
+        }
+      }
+    };
+
+    void tryAutoplay();
+
+    return () => {
+      el.pause();
+      try {
+        el.currentTime = 0;
+      } catch {
+        // ignore
+      }
+    };
+  }, [activeSrc]);
+
   // Build contact URL with service query parameter
   const bookingUrl = `/contact?service=${encodeURIComponent(serviceName)}`;
 
@@ -191,15 +249,38 @@ const Gallery = () => {
             galleryImages.map((src, index) => (
               <div
                 key={src}
-                className="aspect-square rounded-2xl overflow-hidden bg-muted"
+                className="relative aspect-square rounded-2xl overflow-hidden bg-muted"
                 onClick={() => openLightbox(index)}
               >
-                <img
-                  src={src}
-                  alt={`${serviceName} photo ${index + 1}`}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                {getMediaTypeFromPath(src) === 'video' ? (
+                  <>
+                    <video
+                      src={src}
+                      muted
+                      playsInline
+                      preload="metadata"
+                      controls={false}
+                      className="w-full h-full object-cover pointer-events-none"
+                    />
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                      <div className="bg-gradient-magical p-[2px] rounded-full shadow-magical">
+                        <div className="h-11 w-11 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center">
+                          <Play
+                            className="h-5 w-5 text-foreground fill-foreground"
+                            strokeWidth={0}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <img
+                    src={src}
+                    alt={`${serviceName} photo ${index + 1}`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                )}
               </div>
             ))
           ) : (
@@ -234,11 +315,24 @@ const Gallery = () => {
 
               <div className="bg-gradient-magical p-[2px] sm:p-[3px] rounded-[1.75rem] shadow-magical">
                 <div className="bg-background rounded-[1.5rem] p-3 sm:p-4">
-                  <img
-                    src={galleryImages[activeIndex]}
-                    alt={serviceName}
-                    className="max-h-[80vh] max-w-[90vw] w-auto object-contain rounded-2xl"
-                  />
+                  {getMediaTypeFromPath(galleryImages[activeIndex]) === 'video' ? (
+                    <video
+                      key={galleryImages[activeIndex]}
+                      ref={videoRef}
+                      src={galleryImages[activeIndex]}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="max-h-[80vh] max-w-[90vw] w-auto object-contain rounded-2xl"
+                      aria-label={serviceName}
+                    />
+                  ) : (
+                    <img
+                      src={galleryImages[activeIndex]}
+                      alt={serviceName}
+                      className="max-h-[80vh] max-w-[90vw] w-auto object-contain rounded-2xl"
+                    />
+                  )}
                 </div>
               </div>
 

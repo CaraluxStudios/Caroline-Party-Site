@@ -34,6 +34,27 @@ const App = () => (
                   element={<Navigate to="/gallery/characters" replace />}
                 />
                 <Route path="/pricing" element={<Pricing />} />
+                <Route
+                  path="/gallery"
+                  element={<Navigate to="/gallery/characters" replace />}
+                />
+                {/* Temporary hide: Balloon Artists gallery */}
+                <Route
+                  path="/gallery/balloons"
+                  element={<Navigate to="/gallery" replace />}
+                />
+                <Route
+                  path="/gallery/balloons/*"
+                  element={<Navigate to="/gallery" replace />}
+                />
+                <Route
+                  path="/gallery/balloon-artists"
+                  element={<Navigate to="/gallery" replace />}
+                />
+                <Route
+                  path="/gallery/balloon-artists/*"
+                  element={<Navigate to="/gallery" replace />}
+                />
                 <Route path="/gallery/:category" element={<Gallery />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />

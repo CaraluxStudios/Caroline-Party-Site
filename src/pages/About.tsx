@@ -1,7 +1,7 @@
 import { Heart, Shield, Users, Star } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-import princessesGroup from '@/assets/princesses-group.png';
+import foundersImage from '/images/founders.jpeg';
 
 const About = () => {
   const { t } = useLanguage();
@@ -50,7 +50,7 @@ const About = () => {
           </div>
           <div className="order-1 lg:order-2">
             <img 
-              src={princessesGroup} 
+              src={foundersImage} 
               alt="Caroline Party team" 
               className="rounded-3xl shadow-card w-full"
             />

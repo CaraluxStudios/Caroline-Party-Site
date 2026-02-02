@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-01-26T20:34:43.899Z",
+  "generatedAt": "2026-02-02T18:20:51.469Z",
   "categories": {
     "balloons": [],
     "characters": [
@@ -29,7 +29,10 @@
       "images/Characters/WhatsApp Image 2026-01-14 at 12.30.38.jpeg",
       "images/Characters/Photo Dec 18 2025, 5 36 02 PM (28) (1).jpg",
       "images/Characters/WhatsApp Image 2026-01-23 at 17.23.07 (2).jpeg",
-      "images/Characters/WhatsApp Image 2026-01-23 at 17.23.07.jpeg"
+      "images/Characters/WhatsApp Image 2026-01-23 at 17.23.07.jpeg",
+      "images/Characters/WhatsApp Image 2026-01-27 at 15.54.22 (1).jpeg",
+      "images/Characters/WhatsApp Image 2026-01-27 at 15.54.22.jpeg",
+      "images/Characters/WhatsApp Image 2026-01-27 at 15.54.25 (1).jpeg"
     ],
     "entertainers": [
       "images/Entertainers/Anna_1.jpeg",
@@ -82,7 +85,10 @@
       "images/Entertainers/WhatsApp Image 2026-01-23 at 16.57.55.jpeg",
       "images/Entertainers/WhatsApp Image 2026-01-23 at 17.01.18.jpeg",
       "images/Entertainers/WhatsApp Image 2026-01-23 at 17.01.19.jpeg",
-      "images/Entertainers/WhatsApp Image 2026-01-23 at 17.23.07 (1).jpeg"
+      "images/Entertainers/WhatsApp Image 2026-01-23 at 17.23.07 (1).jpeg",
+      "images/Entertainers/WhatsApp Image 2026-01-27 at 15.54.22 (1).jpeg",
+      "images/Entertainers/WhatsApp Image 2026-01-27 at 15.54.22.jpeg",
+      "images/Entertainers/WhatsApp Image 2026-01-27 at 15.54.25 (1).jpeg"
     ],
     "face-painting": [
       "images/FacePainting/Screenshot 2026-01-26 at 2.46.44 PM.png",
@@ -94,9 +100,18 @@
     ],
     "shows": [
       "images/Shows/WhatsApp Image 2026-01-14 at 12.25.57 (1).jpeg",
+      "images/Shows/shows-clips1.mp4",
       "images/Shows/WhatsApp Image 2026-01-14 at 12.25.57.jpeg",
-      "images/Shows/WhatsApp Image.jpeg"
+      "images/Shows/shows-clips2.mp4",
+      "images/Shows/WhatsApp Image.jpeg",
+      "images/Shows/shows-clips3.mp4",
+      "images/Shows/shows-clips4.mp4",
+      "images/Shows/shows-clips5.mp4",
+      "images/Shows/shows-clips6.mp4"
     ],
-    "special-characters": []
+    "special-characters": [
+      "images/Special/mickey-and-minnie-santa.jpeg",
+      "images/Special/santa1.jpeg"
+    ]
   }
 }
