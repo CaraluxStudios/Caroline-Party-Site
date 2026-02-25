@@ -15,7 +15,6 @@ import {
 } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { Send, Sparkles } from 'lucide-react';
-import { supabase } from '@/lib/supabaseClient'
 
 const Contact = () => {
   const { t, language } = useLanguage();
@@ -90,9 +89,12 @@ const handleSubmit = async (e: React.FormEvent) => {
   setErrors({});
 
   try {
-    if (!supabase) {
+    const functionsUrl = import.meta.env.VITE_SUPABASE_FUNCTIONS_URL as string | undefined
+    const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
+
+    if (!functionsUrl || !anonKey) {
       console.warn(
-        '[Supabase] Supabase client is not initialized. Check that VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set.'
+        '[Supabase] Missing VITE_SUPABASE_FUNCTIONS_URL or VITE_SUPABASE_ANON_KEY. Cannot submit lead intake.'
       )
       toast({
         title: '⚠️ Oops',
@@ -102,34 +104,64 @@ const handleSubmit = async (e: React.FormEvent) => {
       return
     }
 
-    const { error } = await supabase
-  .from('contact_requests')
-  .insert([
-    {
-      first_name: formData.firstName,
-      last_name: formData.lastName,
-      email: formData.email,
-      phone: formData.phone,
-      service_type: formData.serviceType,
-      preferred_date: formData.preferredDate,
-      note: formData.message,
-      wants_promotions: formData.promo,
-      agrees_terms: formData.terms,
+    const utmFields: Record<string, string> = {}
+    try {
+      const params = new URLSearchParams(window.location.search)
+      for (const [key, value] of params.entries()) {
+        if (key.toLowerCase().startsWith('utm_') && value) {
+          utmFields[key] = value
+        }
+      }
+    } catch {
+      // ignore
+    }
 
-      workspace_code: 'cp',
-      source_site: 'cp_website',
-    },
-  ])
+    const res = await fetch(`${functionsUrl}/lead-intake-booking`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        apikey: anonKey,
+        Authorization: `Bearer ${anonKey}`,
+      },
+      body: JSON.stringify({
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        note: formData.message,
+        wants_promotions: formData.promo,
+        agrees_terms: formData.terms,
+        service_type: formData.serviceType,
+        preferred_date: formData.preferredDate,
+        workspace_code: 'cp',
+        source_site: 'cp_website',
+        landing_path: window.location.pathname,
+        referrer: document.referrer || null,
+        ...utmFields,
+      }),
+    })
 
-if (error) {
-  console.error('Supabase insert error:', error)
-  toast({
-    title: '⚠️ Oops',
-    description: error.message, // 👈 show the real message
-    variant: 'destructive',
-  })
-  return
-}
+    if (!res.ok) {
+      let errDetails: unknown = null
+      try {
+        const contentType = res.headers.get('content-type') || ''
+        if (contentType.includes('application/json')) {
+          errDetails = await res.json()
+        } else {
+          errDetails = await res.text()
+        }
+      } catch {
+        // ignore
+      }
+
+      console.error('Lead intake booking error:', errDetails)
+      toast({
+        title: '⚠️ Oops',
+        description: 'Something went wrong while submitting your request. Please try again.',
+        variant: 'destructive',
+      })
+      return
+    }
 
     toast({
       title: '✨ ' + t('contact.success'),
