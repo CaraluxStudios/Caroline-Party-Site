@@ -91,10 +91,11 @@ const handleSubmit = async (e: React.FormEvent) => {
   try {
     const functionsUrl = import.meta.env.VITE_SUPABASE_FUNCTIONS_URL as string | undefined
     const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
+    const organizationSlug = import.meta.env.VITE_CP_ORGANIZATION_SLUG as string | undefined
 
-    if (!functionsUrl || !anonKey) {
+    if (!functionsUrl || !anonKey || !organizationSlug) {
       console.warn(
-        '[Supabase] Missing VITE_SUPABASE_FUNCTIONS_URL or VITE_SUPABASE_ANON_KEY. Cannot submit lead intake.'
+        '[Supabase] Missing VITE_SUPABASE_FUNCTIONS_URL, VITE_SUPABASE_ANON_KEY, or VITE_CP_ORGANIZATION_SLUG. Cannot submit lead intake.'
       )
       toast({
         title: '⚠️ Oops',
@@ -133,7 +134,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         agrees_terms: formData.terms,
         service_type: formData.serviceType,
         preferred_date: formData.preferredDate,
-        workspace_code: 'cp',
+        organization_slug: organizationSlug,
         source_site: 'cp_website',
         landing_path: window.location.pathname,
         referrer: document.referrer || null,
